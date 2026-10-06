@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A simple AI Club static website for learning how web hosting works.">
+  <title>UConn AI Club · My First Website</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, sans-serif; color: #153d3a; background: #f5f8f5; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    main { max-width: 1050px; margin: auto; padding: 32px 24px; }
+    header, footer { display: flex; justify-content: space-between; gap: 16px; align-items: center; }
+    .brand { font-weight: 800; font-size: 18px; }
+    .badge { border: 1px solid #bdd7ce; border-radius: 30px; padding: 8px 12px; font-size: 13px; }
+    .hero { padding: 40px 0 40px; max-width: 800px; }
+    .eyebrow { color: #267369; font-size: 13px; font-weight: 750; letter-spacing: .14em; text-transform: uppercase; }
+    h1 { font-size: clamp(42px, 7vw, 78px); line-height: 1.06; letter-spacing: -.055em; margin: 22px 0; }
+    .intro { font-size: 20px; line-height: 1.65; max-width: 620px; color: #49625d; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    article { background: white; border: 1px solid #dae5df; padding: 26px; border-radius: 18px; }
+    .number { color: #267369; font-size: 13px; font-weight: 700; }
+    h2 { font-size: 21px; margin: 18px 0 10px; }
+    article p { color: #49625d; line-height: 1.65; margin: 0; }
+    .demo { background: #123e38; color: white; border-radius: 18px; padding: 30px; margin-top: 22px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .demo h2 { margin-top: 0; }
+    .demo p { color: #cee7df; line-height: 1.6; margin-bottom: 0; }
+    button { background: #d7f58b; color: #153d3a; border: 0; border-radius: 10px; padding: 14px 20px; font: inherit; font-weight: 750; cursor: pointer; white-space: nowrap; }
+    button:hover { background: #e5ffad; }
+    button:focus-visible { outline: 3px solid white; outline-offset: 5px; }
+    footer { padding: 32px 0 8px; font-size: 13px; color: #49625d; }
+    @media (max-width: 650px) { .hero { padding-top: 32px; } .cards { grid-template-columns: 1fr; } .demo, footer { align-items: flex-start; flex-direction: column; } header { flex-wrap: wrap; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <span class="brand">UConn AI Club</span>
+      <span class="badge">Static website demo</span>
+    </header>
+    <nav aria-label="AI chat pages" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:30px">
+      <a href="chat/" style="background:#087e80;color:white;padding:14px 20px;border-radius:10px;font-weight:700;text-decoration:none">Open full-page AI chat →</a>
+      <a href="ai-would-you-rather/" style="background:#123e38;color:white;padding:14px 20px;border-radius:10px;font-weight:700;text-decoration:none">Try floating AI chat →</a>
+    </nav>
+    <section class="hero" aria-labelledby="title">
+      <p class="eyebrow">UConn AI Club · Try the AI demo</p>
+      <h1 id="title">Your AI chat.<br>Your choice of view.</h1>
+      <p class="intro">Open the full-page chat for room to talk, or try the floating chat window. Bring your own OpenRouter key, or explore the built-in demo.</p>
+    </section>
+    <section class="cards" aria-label="What makes this page work">
+      <article><span class="number">01 / CONTENT</span><h2>HTML builds it.</h2><p>Hypertext Markup Language gives the page its structure: headings, paragraphs, and buttons.</p></article>
+      <article><span class="number">02 / DESIGN</span><h2>CSS styles it.</h2><p>Cascading Style Sheets add the colors, spacing, and layout that adapt to your screen.</p></article>
+      <article><span class="number">03 / INTERACTION</span><h2>JavaScript reacts.</h2><p>A small script responds when you click. It runs right here in your browser.</p></article>
+    </section>
+    <section class="demo" aria-labelledby="demo-title">
+      <div><h2 id="demo-title">Give it a click.</h2><p id="result" role="status" aria-live="polite">Try the button to see JavaScript in action.</p></div>
+      <button id="demo-button" type="button">Say hello ↗</button>
+    </section>
+    <section class="demo" aria-labelledby="ai-title">
+      <div><h2 id="ai-title">Explore further.</h2><p>Try a floating chat window or a full-page message layout. Everything runs in your browser.</p><p><a href="ai-would-you-rather/" style="color:#d7f58b;font-weight:700">Open floating chat →</a></p></div>
+    </section>
+    <noscript><p>JavaScript is disabled. You can still read this page; enable it to try the button.</p></noscript>
+    <footer><span>Made for the AI Club hosting workshop.</span><span>Build something. Share it with the world.</span></footer>
+  </main>
+  <script>
+    let clicks = 0;
+    document.getElementById('demo-button').addEventListener('click', () => {
+      clicks += 1;
+      document.getElementById('result').textContent = `Hello from your browser! You clicked ${clicks} ${clicks === 1 ? 'time' : 'times'}.`;
+    });
+  </script>
+</body>
+</html>

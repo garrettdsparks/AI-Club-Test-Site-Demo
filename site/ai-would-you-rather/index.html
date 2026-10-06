@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Would You Rather? · UConn AI Club</title>
+
+<!-- BOT CSS START: copy this style block to your existing page's head -->
+
+<!-- BOT CSS END -->
+<link rel="stylesheet" href="../assets/chat.css">
+</head>
+<body>
+<nav class="route-nav" aria-label="Page navigation"><a href="../">← Home</a><a href="../chat/">Full-page AI chat</a><a href="../ai-would-you-rather/">Floating AI chat</a></nav>
+<main>
+  <div class="brand">UConn AI Club</div>
+  <!-- Customize: change the title below. -->
+  <h1>Would you<br><em>rather…?</em></h1>
+  <p class="intro">Pick a theme. Get two ridiculous choices. Defend your answer.</p>
+  <div class="ideas"><button data-prompt="Give me a funny would-you-rather question about superpowers.">Superpowers</button><button data-prompt="Give me a funny would-you-rather question about campus life.">Campus life</button></div>
+  <p class="footnote">Try the floating chat window or open the full-page layout. Try built-in replies, or connect your own key using the instructions in the chat.<br><a href="../chat/">Full-page AI chat</a> · <a href="../">Back</a></p>
+  <section class="source-guide" aria-labelledby="source-title">
+    <h2 id="source-title">How this floating chatbot works</h2>
+    <p>Close the floating window to explore the code. Copy the HTML into your page, then include the CSS and both scripts below. Keep the same element IDs so the buttons connect to the script.</p>
+    <p>The password field receives a key only while the page is open. <strong>Never write your API key into these files.</strong></p>
+    <details><summary>1. HTML — the chat button, key field, and message panel</summary><button type="button" class="copy-source" data-copy="source-html" disabled>Copy HTML</button><pre><code id="source-html">Loading source…</code></pre></details>
+    <details><summary>2. CSS — widget appearance and mobile layout</summary><button type="button" class="copy-source" data-copy="source-css" disabled>Copy CSS</button><pre><code id="source-css">Loading source…</code></pre></details>
+    <details><summary>3. JavaScript — key handling, messages, and API request</summary><button type="button" class="copy-source" data-copy="source-js" disabled>Copy JavaScript</button><pre><code id="source-js">Loading source…</code></pre></details>
+    <details><summary>4. Markdown — format the AI reply</summary><button type="button" class="copy-source" data-copy="source-markdown" disabled>Copy Markdown renderer</button><pre><code id="source-markdown">Loading source…</code></pre></details>
+    <p>File order: load <code>chat.css</code> in the head; put the widget HTML in the body; load <code>markdown.js</code> before <code>chat.js</code> at the end. Adjust file paths to match your folders. The shared CSS also supports the full-page route.</p>
+    <p id="source-status" role="status"></p>
+  </section>
+</main>
+<!-- BOT HTML START: copy this block just before your existing page's closing body tag -->
+<button id="sq-toggle" aria-controls="sq-panel" aria-expanded="false">✦ Give me a dilemma</button>
+<section id="sq-panel" aria-labelledby="sq-title" hidden>
+  <header><div><h2 id="sq-title">Would You Rather?</h2><div id="sq-mode">Static chat demo · built-in replies</div></div><button id="sq-close" aria-label="Close chat">×</button></header>
+  <form id="sq-connection" autocomplete="off">
+    <label for="sq-key">1. Connect your OpenRouter key</label>
+    <input id="sq-key" type="password" autocomplete="off" spellcheck="false" placeholder="Paste your OpenRouter key here to enable AI">
+    <div class="sq-key-actions"><button type="submit">Use / update key</button><button type="button" id="sq-clear">Clear key / demo</button><button type="button" id="sq-new">New chat</button></div>
+    <p id="sq-key-note"><a href="https://openrouter.ai/settings/keys" target="_blank" rel="noopener noreferrer">Get a key from OpenRouter ↗</a><br>Kept only in this page's memory; refresh clears it. Only use your key on a page whose code you trust.</p>
+    <details><summary>How to add or update your key</summary>
+      <ol style="font-size:13px;padding-left:20px;line-height:1.6">
+        <li>Sign in at <a href="https://openrouter.ai/settings/keys" target="_blank" rel="noopener noreferrer">OpenRouter Keys</a> and choose <strong>Create Key</strong>.</li>
+        <li>Copy your key and paste it into the password field below.</li>
+        <li>Click <strong>Use / update key</strong>, then send a theme such as “food”.</li>
+        <li>To replace it, paste a new key and click the same button. Revoke the old key on OpenRouter if you no longer need it.</li>
+      </ol>
+      <p style="font-size:12px">Paste into this live page, <strong>not the HTML code on GitHub</strong>. Published code is public. Each visitor uses their own key and quota. GitHub Secrets cannot be read privately by a static webpage.</p>
+    </details>
+  </form>
+  <div id="sq-log" role="log" aria-live="polite"><div class="sq-message"><strong>GAME BOT</strong>Give me a theme to start a game, or ask me a question. We can keep chatting from there.</div></div>
+  <form id="sq-form"><label for="sq-input">Your message</label><input id="sq-input" maxlength="1000" required autocomplete="off" placeholder="Try a theme: food, space, college…"><button id="sq-send">Send</button><p id="sq-status" role="status"></p></form>
+  <p id="sq-privacy">Demo sends no request. With a key, your message goes to OpenRouter and its model provider. Earlier messages are included for context. New chat clears the conversation; refresh clears both conversation and key.</p>
+</section>
+<!-- BOT HTML END -->
+<!-- BOT SCRIPT START: copy this script after the bot HTML -->
+<script src="../assets/markdown.js"></script>
+<script src="../assets/chat.js"></script>
+<!-- BOT SCRIPT END -->
+<script>
+(async () => {
+  const files=[['source-html','index.html'],['source-css','../assets/chat.css'],['source-js','../assets/chat.js'],['source-markdown','../assets/markdown.js']];
+  await Promise.all(files.map(async ([id,url])=>{
+    const output=document.getElementById(id);
+    try {
+      const response=await fetch(url);if(!response.ok)throw new Error('Source unavailable');
+      let source=await response.text();
+      if(id==='source-html'){
+        const saved=new DOMParser().parseFromString(source,'text/html');
+        source='<!-- Add the CSS link in your head. -->\n<link rel="stylesheet" href="assets/chat.css">\n\n'+saved.querySelector('#sq-toggle').outerHTML+'\n'+saved.querySelector('#sq-panel').outerHTML+'\n\n<!-- Load these scripts after the widget HTML. -->\n<script src="assets/markdown.js"><'+'/script>\n<script src="assets/chat.js"><'+'/script>';
+      }
+      output.textContent=source;
+      document.querySelector('[data-copy="'+id+'"]').disabled=false;
+    }catch{output.textContent='Could not load this file. Open the published website and try again.';}
+  }));
+  document.querySelectorAll('.copy-source').forEach(button=>button.onclick=async()=>{
+    try{await navigator.clipboard.writeText(document.getElementById(button.dataset.copy).textContent);document.getElementById('source-status').textContent='Code copied.';}
+    catch{document.getElementById('source-status').textContent='Select the code and copy it manually.';}
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Would You Rather? · UConn AI Club</title>
+
+
+
+
+<link rel="stylesheet" href="../assets/chat.css">
+</head>
+<body data-layout="full">
+<nav class="route-nav" aria-label="Page navigation"><a href="../">← Home</a><a href="../chat/">Full-page AI chat</a><a href="../ai-would-you-rather/">Floating AI chat</a></nav>
+
+
+<button id="sq-toggle" aria-controls="sq-panel" aria-expanded="false">✦ Give me a dilemma</button>
+<section id="sq-panel" aria-labelledby="sq-title" hidden>
+  <header><div><h2 id="sq-title">UConn AI Club · AI Chat</h2><div id="sq-mode">Static chat demo · built-in replies</div></div><button id="sq-close" aria-label="Close chat">×</button></header>
+  <form id="sq-connection" autocomplete="off">
+    <label for="sq-key">1. Connect your OpenRouter key</label>
+    <input id="sq-key" type="password" autocomplete="off" spellcheck="false" placeholder="Paste your OpenRouter key here to enable AI">
+    <div class="sq-key-actions"><button type="submit">Use / update key</button><button type="button" id="sq-clear">Clear key / demo</button><button type="button" id="sq-new">New chat</button></div>
+    <p id="sq-key-note"><a href="https://openrouter.ai/settings/keys" target="_blank" rel="noopener noreferrer">Get a key from OpenRouter ↗</a><br>Kept only in this page's memory; refresh clears it. Only use your key on a page whose code you trust.</p>
+    <details><summary>How to add or update your key</summary>
+      <ol style="font-size:13px;padding-left:20px;line-height:1.6">
+        <li>Sign in at <a href="https://openrouter.ai/settings/keys" target="_blank" rel="noopener noreferrer">OpenRouter Keys</a> and choose <strong>Create Key</strong>.</li>
+        <li>Copy your key and paste it into the password field below.</li>
+        <li>Click <strong>Use / update key</strong>, then send a theme such as “food”.</li>
+        <li>To replace it, paste a new key and click the same button. Revoke the old key on OpenRouter if you no longer need it.</li>
+      </ol>
+      <p style="font-size:12px">Paste into this live page, <strong>not the HTML code on GitHub</strong>. Published code is public. Each visitor uses their own key and quota. GitHub Secrets cannot be read privately by a static webpage.</p>
+    </details>
+  </form>
+  <div id="sq-log" role="log" aria-live="polite"><div class="sq-message"><strong>GAME BOT</strong>Give me a theme to start a game, or ask me a question. We can keep chatting from there.</div></div>
+  <form id="sq-form"><label for="sq-input">Your message</label><input id="sq-input" maxlength="1000" required autocomplete="off" placeholder="Try a theme: food, space, college…"><button id="sq-send">Send</button><p id="sq-status" role="status"></p></form>
+  <p id="sq-privacy">Demo sends no request. With a key, your message goes to OpenRouter and its model provider. Earlier messages are included for context. New chat clears the conversation; refresh clears both conversation and key.</p>
+</section>
+
+
+<script src="../assets/markdown.js"></script>
+<script src="../assets/chat.js"></script>
+
+</body>
+</html>
